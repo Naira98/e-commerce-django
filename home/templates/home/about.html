@@ -31,15 +31,20 @@
         border-radius: 8px;
       }
       .img-width {
-        @media (max-width: 576px) {
+        width: 100%;
+      }
+      @media (max-width: 576px) {
+        .img-width {
           width: 80%;
         }
-
-        @media (min-width: 768px) {
+      }
+      @media (min-width: 768px) {
+        .img-width {
           width: 300px;
         }
-
-        @media (min-width: 992px) {
+      }
+      @media (min-width: 992px) {
+        .img-width {
           width: 600px;
         }
       }
