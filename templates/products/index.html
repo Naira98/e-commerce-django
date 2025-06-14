@@ -1,11 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Products
-</body>
-</html>
+{% extends 'base.html' %} 
+{% block title %} Products {% endblock title %} 
+{% block head %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+{% endblock head %} 
+
+{% block body %} 
+{% load static %} 
+
+{% include "components/navbar.html" with active='products' %} 
+
+{% include "components/header.html" with title='Our Products' paragraph='Explore our latest collection' %}
+
+<section class="py-16">
+  <div
+    class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+  >
+    {% for product in products %}
+    <div
+      class="group relative border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white"
+    >
+      <img
+        src="{{ product.image.url }}"
+        alt="{{ product.name }}"
+        class="w-full h-64 object-cover"
+      />
+
+    <div
+      class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity"
+    >
+      <button
+        title="Add to Cart"
+        class="bg-white text-black p-3 rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+      >
+        <i class="fa-solid fa-cart-shopping text-lg"></i>
+      </button>
+      <button
+        title="Add to Favorites"
+        class="bg-white text-black p-3 rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+      >
+        <i class="fa-regular fa-heart text-lg"></i>
+      </button>
+    </div>
+
+      <div class="p-4 text-center">
+        <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
+        <p class="text-gray-700 text-sm">{{ product.price }} EGP</p>
+      </div>
+    </div>
+    {% empty %}
+    <p class="text-center col-span-full text-gray-500">
+      No products available.
+    </p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock body %}
