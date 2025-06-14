@@ -77,8 +77,12 @@ WSGI_APPLICATION = "commerce.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "ecommerce_django",
+        "USER": "commerce_user",
+        "PASSWORD": "12345",
+        "HOST": "localhost", 
+        "PORT": "5432",
     }
 }
 
@@ -121,7 +125,6 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    "/var/www/static/",
 ]
 
 # Default primary key field type
