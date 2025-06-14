@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+{% block title %} Products {% endblock title %} 
+
+{% block body %} 
+{% load static %} 
+
+{% include "components/navbar.html" with active='products' %} 
+
+{% include "components/header.html" with title='Our Products' paragraph='Explore our latest collection' %}
+
+<section class="py-16">
+  <div
+    class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+  >
+    {% for product in products %}
+      {% include "components/product_card.html" with product=product %}
+    {% empty %}
+    <p class="text-center col-span-full text-gray-500">
+      No products available.
+    </p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock body %}

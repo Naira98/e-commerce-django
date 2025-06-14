@@ -1,0 +1,91 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %} Home {% endblock%} 
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}" /> 
+{% endblock head %} 
+
+{% block body %} 
+{% include "components/navbar.html" with active='home' %}
+
+<!-- Hero -->
+<section class="bg-gray-900 text-white py-16">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-4">
+    <div class="flex-1 mb-10 md:mb-0">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">
+        Welcome to <span class="text-yellow-400">E-Commerce</span>
+      </h1>
+      <p class="mb-6 text-lg w-[70%]">
+        Discover products you love, all in one place. Curated quality, fast
+        delivery, and secure checkout. Shop smart. Live better.
+      </p>
+      <a
+        href="/products"
+        class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded text-lg font-medium"
+      >
+        Start Shopping
+      </a>
+    </div>
+    <img
+      class="img-width hidden sm:block"
+      src="{% static 'images/home/hero_image.svg' %}"
+      alt=""
+    />
+  </div>
+</section>
+
+<!-- Search -->
+<section class="bg-gray-100 text-gray-800 py-10">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center gap-4">
+      <input
+        type="text"
+        placeholder="Search Category"
+        class="flex-1 px-4 py-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+      />
+      <button
+        class="bg-gray-900 text-white px-6 py-3 rounded hover:bg-gray-800"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Boxes -->
+<section class="py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div class="bg-gray-900 text-white p-6 rounded shadow">
+        <div class="text-4xl mb-3">
+          <i class="fa-solid fa-star text-yellow-400"></i>
+        </div>
+        <h5 class="text-xl font-semibold mb-2">Top Quality</h5>
+        <p>Only the best products from trusted brands.</p>
+      </div>
+      <div class="bg-gray-700 text-white p-6 rounded shadow">
+        <div class="text-4xl mb-3">
+          <i class="fa-solid fa-truck-fast text-yellow-400"></i>
+        </div>
+        <h5 class="text-xl font-semibold mb-2">Fast Shipping</h5>
+        <p>Quick delivery to your doorstep.</p>
+      </div>
+      <div class="bg-gray-900 text-white p-6 rounded shadow">
+        <div class="text-4xl mb-3">
+          <i class="fa-solid fa-clock-rotate-left text-yellow-400"></i>
+        </div>
+        <h5 class="text-xl font-semibold mb-2">24/7 Support</h5>
+        <p>Our team is here to help anytime, anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById("menu-toggle").addEventListener("click", function () {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("hidden");
+  });
+</script>
+{% endblock %}

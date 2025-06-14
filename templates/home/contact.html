@@ -1,0 +1,74 @@
+{% extends 'base.html' %} 
+{% block title %} Contact Us {% endblock %} 
+
+{% block body %} 
+{% load static %} 
+{% include "components/navbar.html" with active='contact' %} 
+{% include "components/header.html" with title='Contact Us' paragraph="We'd love to hear from you!" %}
+
+<!-- Contact Form -->
+<section class="py-16">
+  <div class="max-w-3xl mx-auto px-4">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8">
+      <div class="mb-6">
+        <label for="name" class="block text-gray-700 font-bold mb-2"
+          >Your Name</label
+        >
+        <input
+          type="text"
+          id="name"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
+      <div class="mb-6">
+        <label for="email" class="block text-gray-700 font-bold mb-2"
+          >Your Email</label
+        >
+        <input
+          type="email"
+          id="email"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
+      <div class="mb-6">
+        <label for="subject" class="block text-gray-700 font-bold mb-2"
+          >Subject</label
+        >
+        <input
+          type="text"
+          id="subject"
+          class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        />
+      </div>
+      <div class="mb-6">
+        <label for="message" class="block text-gray-700 font-bold mb-2"
+          >Message</label
+        >
+        <textarea
+          id="message"
+          rows="5"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400"
+        ></textarea>
+      </div>
+      <div class="flex justify-center">
+        <button
+          type="submit"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded"
+        >
+          Send Message
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  document.getElementById("menu-toggle").addEventListener("click", function () {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("hidden");
+  });
+</script>
+{% endblock %}

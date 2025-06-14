@@ -1,0 +1,31 @@
+<div
+  class="group relative border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white"
+>
+  <img
+    src="{{ product.image.url }}"
+    alt="{{ product.name }}"
+    class="w-full h-64 object-cover"
+  />
+
+  <div
+    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity"
+  >
+    <button
+      title="Add to Cart"
+      class="bg-white text-black p-3 rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+    >
+      <i class="fa-solid fa-cart-shopping text-lg"></i>
+    </button>
+    <button
+      title="Add to Favorites"
+      class="bg-white text-black p-3 rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+    >
+      <i class="fa-regular fa-heart text-lg"></i>
+    </button>
+  </div>
+
+  <div class="p-4 text-center">
+    <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
+    <p class="text-gray-700 text-sm">{{ product.price }} EGP</p>
+  </div>
+</div>
