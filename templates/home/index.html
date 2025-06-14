@@ -1,76 +1,12 @@
+{% extends 'base.html' %} 
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home | E-Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <style>
-      .img-width {
-        padding-left: 20px;
-      }
+{% block title %} Home {% endblock %}
 
-      @media (min-width: 576px) {
-        .img-width {
-          width: 250px;
-        }
-      }
+{% block style %} <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
 
-      @media (min-width: 768px) {
-        .img-width {
-          width: 300px;
-        }
-      }
-
-      @media (min-width: 992px) {
-        .img-width {
-          width: 400px;
-          padding-bottom: 10px;
-        }
-      }
-    </style>
-  </head>
-  <body class="font-sans bg-white text-gray-900">
-    <!-- Navbar -->
-    <nav class="bg-gray-900 text-white py-4">
-      <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
-        <a href="/home" class="text-xl font-bold">E-Commerce</a>
-        <div class="space-x-6 hidden md:flex">
-          <a href="/home" class="hover:text-yellow-400 font-medium">Home</a>
-          <a href="/home/about" class="hover:text-yellow-400 font-medium"
-            >About</a
-          >
-          <a href="/home/contact" class="hover:text-yellow-400 font-medium"
-            >Contact</a
-          >
-        </div>
-        <!-- Mobile menu icon -->
-        <div class="md:hidden">
-          <button id="menu-toggle" class="focus:outline-none">
-            <i class="fas fa-bars text-xl"></i>
-          </button>
-        </div>
-      </div>
-      <!-- Mobile menu -->
-      <div id="mobile-menu" class="hidden md:hidden px-4 mt-2 space-y-2">
-        <a href="/home" class="block text-white hover:text-yellow-400">Home</a>
-        <a href="/home/about" class="block text-white hover:text-yellow-400"
-          >About</a
-        >
-        <a href="/home/contact" class="block text-white hover:text-yellow-400"
-          >Contact</a
-        >
-      </div>
-    </nav>
+{% block body %}
+    {% include "components/navbar.html" with active='home' %}
 
     <!-- Hero -->
     <section class="bg-gray-900 text-white py-16">
@@ -93,7 +29,7 @@
         </div>
         <img
           class="img-width hidden sm:block"
-          src="{% static 'home/hero_image.svg' %}"
+          src="{% static 'images/home/hero_image.svg' %}"
           alt=""
         />
       </div>
@@ -154,5 +90,59 @@
           menu.classList.toggle("hidden");
         });
     </script>
+{% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | E-Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+     
+    </style>
+  </head>
+  <body class="font-sans bg-white text-gray-900">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 text-white py-4">
+      <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+        <a href="/home" class="text-xl font-bold">E-Commerce</a>
+        <div class="space-x-6 hidden md:flex">
+          <a href="/home" class="hover:text-yellow-400 font-medium">Home</a>
+          <a href="/home/about" class="hover:text-yellow-400 font-medium"
+            >About</a
+          >
+          <a href="/home/contact" class="hover:text-yellow-400 font-medium"
+            >Contact</a
+          >
+        </div>
+        <!-- Mobile menu icon -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-4 mt-2 space-y-2">
+        <a href="/home" class="block text-white hover:text-yellow-400">Home</a>
+        <a href="/home/about" class="block text-white hover:text-yellow-400"
+          >About</a
+        >
+        <a href="/home/contact" class="block text-white hover:text-yellow-400"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    
   </body>
 </html>

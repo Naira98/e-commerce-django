@@ -1,47 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us | E-Commerce</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-white text-gray-900 font-sans">
-    <!-- Navbar -->
-    <nav class="bg-gray-900 text-white py-4">
-      <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
-        <a href="/home" class="text-xl font-bold">E-Commerce</a>
-        <div class="hidden md:flex space-x-6">
-          <a href="/home" class="hover:text-yellow-400">Home</a>
-          <a href="/home/about" class="hover:text-yellow-400">About</a>
-          <a href="/home/contact" class="text-yellow-400 font-semibold"
-            >Contact</a
-          >
-        </div>
-        <div class="md:hidden">
-          <button id="menu-toggle" class="focus:outline-none">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div id="mobile-menu" class="hidden px-4 mt-2 space-y-2 md:hidden">
-        <a href="/home" class="block hover:text-yellow-400">Home</a>
-        <a href="/home/about" class="block hover:text-yellow-400">About</a>
-        <a href="/home/contact" class="block text-yellow-400 font-semibold"
-          >Contact</a
-        >
-      </div>
-    </nav>
+{% extends 'base.html' %} 
+
+{% block title %} Contact Us {% endblock %}
+
+{% block body %}
+    {% load static %}
+    {% include "components/navbar.html" with active='contact' %}
 
     <!-- Header -->
     <section class="bg-gray-100 text-center py-16">
@@ -118,5 +81,5 @@
           menu.classList.toggle("hidden");
         });
     </script>
-  </body>
-</html>
+{% endblock %}
+

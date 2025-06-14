@@ -1,0 +1,22 @@
+.img-width {
+  padding-left: 20px;
+}
+
+@media (min-width: 576px) {
+  .img-width {
+    width: 250px;
+  }
+}
+
+@media (min-width: 768px) {
+  .img-width {
+    width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .img-width {
+    width: 400px;
+    padding-bottom: 10px;
+  }
+}
