@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'layout.html' %} 
 {% block title %} Products {% endblock title %} 
 
 {% block body %} 
@@ -12,12 +12,12 @@
   <div
     class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
   >
-    {% for product in products %}
-      {% include "components/product_card.html" with product=product %}
+    {% for product in products %} 
+      {% include "components/product_card.html" with product=product %} 
     {% empty %}
-    <p class="text-center col-span-full text-gray-500">
-      No products available.
-    </p>
+      <p class="text-center col-span-full text-gray-500">
+        No products available.
+      </p>
     {% endfor %}
   </div>
 </section>
