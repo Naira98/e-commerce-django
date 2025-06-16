@@ -15,7 +15,11 @@ class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField(max_length=500, null=False, blank=False)
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=False, blank=False
+        Category,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False,
+        related_name="products",
     )
     available_stock = models.PositiveIntegerField(null=False, blank=False, default=1)
     image = models.ImageField(upload_to="product_images/", null=False, blank=False)
