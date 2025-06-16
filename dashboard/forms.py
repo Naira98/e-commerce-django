@@ -1,5 +1,5 @@
 from django import forms
-from products.models import Product
+from products.models import Product, Category
 
 
 class ProductForm(forms.ModelForm):
@@ -13,7 +13,7 @@ class ProductForm(forms.ModelForm):
             "image",
             "available_stock",
         ]
-        
+
         widgets = {
             "name": forms.TextInput(attrs={"class": "w-full px-3 py-2 border rounded"}),
             "description": forms.Textarea(
@@ -35,5 +35,19 @@ class ProductForm(forms.ModelForm):
             ),
             "available_stock": forms.NumberInput(
                 attrs={"class": "w-full px-3 py-2 border rounded"}
+            ),
+        }
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ["name"]
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "w-full px-3 py-2 border rounded",
+                    "placeholder": "Enter new category name",
+                }
             ),
         }
