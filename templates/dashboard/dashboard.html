@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block body %}
+{% include "components/navbar.html" %}
+
+<div class="max-w-6xl mx-auto py-10 px-4">
+  <h1 class="text-2xl font-bold mb-6">Admin Dashboard</h1>
+
+  <!-- Add Product button aligned to the right -->
+  <div class="flex justify-end mb-4">
+    <a href="{% url 'admin_product_create' %}" class="bg-yellow-400 px-4 py-2 rounded text-white font-medium hover:bg-yellow-500 transition">
+      + Add Product
+    </a>
+  </div>
+
+  <table class="min-w-full table-auto bg-white shadow border">
+    <thead>
+      <tr class="bg-gray-100 text-center">
+        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">Image</th>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Category</th>
+        <th class="px-4 py-2">Price</th>
+        <th class="px-4 py-2">Available Stock</th>
+        <th class="px-4 py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr class="border-t text-center">
+          <td class="px-4 py-2">{{ product.id }}</td>
+          <td class="px-4 py-2"><img src="{{ product.image.url }}" class="h-16 mx-auto" /></td>
+          <td class="px-4 py-2">{{ product.name }}</td>
+          <td class="px-4 py-2">{{ product.category.name }}</td>
+          <td class="px-4 py-2">{{ product.price }} EGP</td>
+          <td class="px-4 py-2">{{ product.available_stock }}</td>
+          <td class="px-4 py-2">
+            <div class="flex items-center justify-center gap-2">
+              <a href="{% url 'admin_product_edit' product.id %}"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-600 hover:bg-yellow-400 hover:text-white shadow-sm transition duration-200"
+                title="Edit">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+              <a href="{% url 'admin_product_delete' product.id %}"
+                class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gray-100 text-gray-600 hover:bg-yellow-400 hover:text-white shadow-sm transition duration-200"
+                title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7" class="text-center py-4 text-gray-500">No products available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
