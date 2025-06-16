@@ -1,29 +1,28 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Category
 
 
 def products(request):
-    products = Product.objects.all()
     return render(
         request,
         "products/products.html",
         {
-            "products": products,
-            "categories": [{"id": 1, "name": "Clothings"}, {"id": 2, "name": "Shoes"}],
+            "products": Product.objects.all(),
+            "categories": Category.objects.all(),
         },
     )
 
 
-def products_by_category(request, category):
-    products = Product.objects.all()
+def products_by_category(request, category_id):
     return render(
         request,
         "products/products.html",
         {
-            "products": products,
-            "categories": [{"id": 1, "name": "Clothings"}, {"id": 2, "name": "Shoes"}],
+            "products": Product.objects.filter(category=category_id),
+            "categories": Category.objects.all(),
         },
     )
+
 
 def product_details(request, product_id):
     product = Product.objects.get(id=product_id)
