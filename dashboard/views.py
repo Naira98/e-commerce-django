@@ -1,9 +1,9 @@
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, TemplateView
 from django.views import View
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from products.models import Product
-from .forms import ProductForm
+from products.models import Product, Category
+from .forms import ProductForm, CategoryForm
 
 class AdminProductListView(ListView):
     model = Product
@@ -30,3 +30,9 @@ class AdminProductDeleteView(View):
         product = get_object_or_404(Product, id=pk)
         product.delete()
         return redirect(reverse_lazy('admin_dashboard'))
+    
+class AdminCategoryCreateView(CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'dashboard/category_from.html'
+    success_url = reverse_lazy('admin_dashboard')
