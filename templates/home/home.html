@@ -82,6 +82,20 @@
   </div>
 </section>
 
+<!-- New Products -->
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-10 text-center">New Products</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      {% for product in new_products %}
+        {% include "components/product_card.html" with product=product home_page=True %}
+      {% empty %}
+        <p class="text-center col-span-full text-gray-500">No new products available.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
 <script>
   document.getElementById("menu-toggle").addEventListener("click", function () {
     const menu = document.getElementById("mobile-menu");

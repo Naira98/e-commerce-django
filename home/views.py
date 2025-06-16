@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from products.models import Product
 
-# Create your views here.
 
+def home(request):
+    print("IN HOME VIEW")
+    # new_products = Product.objects.order_by('-created_at')[:6]
+    new_products = Product.objects.all()[:3]
 
-def index(request):
-    return render(request, "home/index.html")
+    return render(request, "home/home.html", {"new_products": new_products})
 
 
 def about(request):
