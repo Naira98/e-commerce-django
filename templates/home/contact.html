@@ -1,10 +1,7 @@
-{% extends 'layout.html' %} 
-{% block title %} Contact Us {% endblock %} 
-
-{% block body %} 
-{% load static %} 
-{% include "components/navbar.html" with active='contact' %} 
-{% include "components/header.html" with title='Contact Us' paragraph="We'd love to hear from you!" %}
+{% extends 'base.html' %} {% block title %} Contact Us {% endblock %} {% block
+body %} {% load static %} {% include "components/navbar.html" with
+active='contact' %} {% include "components/header.html" with title='Contact Us'
+paragraph="We'd love to hear from you!" %}
 
 <!-- Contact Form -->
 <section class="py-16">

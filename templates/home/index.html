@@ -1,13 +1,8 @@
-{% extends 'layout.html' %} 
-{% load static %} 
-{% block title %} Home {% endblock title %} 
-
-{% block head %}
+{% extends 'base.html' %} {% load static %} {% block title %} Home {% endblock
+title %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-{% endblock head %} 
-
-{% block body %} 
-{% include "components/navbar.html" with active='home' %}
+{% endblock head %} {% block body %} {% include "components/navbar.html" with
+active='home' %}
 
 <!-- Hero -->
 <section class="bg-gray-900 text-white py-16">
