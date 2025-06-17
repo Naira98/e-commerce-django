@@ -24,7 +24,7 @@
         <!-- Products Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {% for product in products %}
-            {% include "components/product_card.html" with product=product %}
+            {% include "products/components/product_card.html" with product=product %}
           {% empty %}
             <p class="text-center col-span-full text-gray-500">
               No products available.
