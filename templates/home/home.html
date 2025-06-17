@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends "base.html" %} 
 {% load static %} 
 {% block title %} Home {% endblock title %} 
 
@@ -7,7 +7,7 @@
 {% endblock head %} 
 
 {% block body %} 
-{% include "components/navbar.html" with active='home' %}
+{% include "components/navbar.html" with active="home" %}
 
 <!-- Hero -->
 <section class="bg-gray-900 text-white py-16">
@@ -88,7 +88,7 @@
     <h2 class="text-3xl font-bold mb-10 text-center">New Products</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {% for product in new_products %}
-        {% include "components/product_card.html" with product=product home_page=True %}
+        {% include "products/components/product_card.html" with product=product home_page=True %}
       {% empty %}
         <p class="text-center col-span-full text-gray-500">No new products available.</p>
       {% endfor %}
