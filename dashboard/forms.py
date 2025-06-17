@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
         fields = [
             "name",
             "description",
-            "category",
+            "categories",
             "price",
             "image",
             "available_stock",
@@ -22,7 +22,7 @@ class ProductForm(forms.ModelForm):
                     "rows": 4,
                 }
             ),
-            "category": forms.Select(
+            "categories": forms.Select(
                 attrs={"class": "w-full px-3 py-2 border rounded"}
             ),
             "price": forms.NumberInput(
@@ -47,7 +47,6 @@ class CategoryForm(forms.ModelForm):
             "name": forms.TextInput(
                 attrs={
                     "class": "w-full px-3 py-2 border rounded",
-                    "placeholder": "Enter new category name",
                 }
             ),
         }

@@ -3,9 +3,7 @@ from products.models import Product
 
 
 def home(request):
-    print("IN HOME VIEW")
-    # new_products = Product.objects.order_by('-created_at')[:6]
-    new_products = Product.objects.all()[:3]
+    new_products = Product.objects.order_by('-created_at')[:3]
 
     return render(request, "home/home.html", {"new_products": new_products})
 

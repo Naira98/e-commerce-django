@@ -7,7 +7,7 @@ def products(request):
         request,
         "products/products.html",
         {
-            "products": Product.objects.all(),
+            "products": Product.objects.order_by("id"),
             "categories": Category.objects.all(),
         },
     )
@@ -18,7 +18,7 @@ def products_by_category(request, category_id):
         request,
         "products/products.html",
         {
-            "products": Product.objects.filter(category=category_id),
+            "products": Product.objects.order_by("id").filter(category=category_id),
             "categories": Category.objects.all(),
         },
     )
