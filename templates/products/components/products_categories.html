@@ -1,0 +1,21 @@
+<h2 class="text-xl font-semibold mb-4">Categories</h2>
+<ul class="space-y-2">
+  <li>
+    <a
+      href="{% url 'products' %}?{% if per_page %}per_page={{ per_page }}{% endif %}"
+      class="hover:text-yellow-400 transition {% if not selected_category %} text-yellow-400 {% endif %}"
+    >
+      All
+    </a>
+  </li>
+  {% for category in categories %}
+  <li>
+    <a
+      href="{% url 'products' %}?category={{ category.id }}{% if per_page %}&per_page={{ per_page }}{% endif %}"
+      class="hover:text-yellow-400 transition {% if selected_category == category.id %} text-yellow-400 {% endif %}"
+    >
+      {{ category.name }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
