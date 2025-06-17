@@ -18,7 +18,7 @@ class Product(models.Model):
     categories = models.ManyToManyField(
         Category, related_name="products", blank=False
     )
-    available_stock = models.PositiveIntegerField(null=False, blank=False, default=1)
+    available_stock = models.PositiveIntegerField(null=False, blank=False)
     image = models.ImageField(upload_to="product_images/", null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=8, decimal_places=2, null=False, blank=False)

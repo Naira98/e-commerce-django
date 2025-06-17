@@ -1,43 +1,51 @@
 <div
-  class="group relative border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white"
+  class="group relative border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white 
+  {% if home_page %} max-w-[240px] {% else %} max-w-[300px] {% endif %}"
 >
   <!-- Product Image -->
   <img
     src="{{ product.image.url }}"
     alt="{{ product.name }}"
-    class="w-full h-64 object-cover {%if home_page == True %} object-contain h-full w-full transition-transform group-hover:scale-105 duration-300 {% endif %}"
+    class="w-full object-cover transition-transform duration-300
+      {% if home_page %}
+        object-contain h-48 group-hover:scale-105
+      {% else %}
+        h-64
+      {% endif %}"
   />
 
-<!-- Hover Actions -->
-<div
-  class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity"
->
-  <button
-    title="Add to Cart"
-    class="bg-white text-black w-12 h-12 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+  <!-- Hover Actions -->
+  <div
+    class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
   >
-    <i class="fa-solid fa-cart-shopping text-lg"></i>
-  </button>
+    <button
+      title="Add to Cart"
+      class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+    >
+      <i class="fa-solid fa-cart-shopping text-base"></i>
+    </button>
 
-  <button
-    title="Add to Favorites"
-    class="bg-white text-black w-12 h-12 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
-  >
-    <i class="fa-regular fa-heart text-lg"></i>
-  </button>
+    <button
+      title="Add to Favorites"
+      class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+    >
+      <i class="fa-regular fa-heart text-base"></i>
+    </button>
 
-  <a
-    href="{% url 'product_details' product.id %}"
-    title="View Info"
-    class="bg-white text-black w-12 h-12 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
-  >
-    <i class="fa-solid fa-circle-info text-lg"></i>
-  </a>
-</div>
-
-  <!-- Product Info -->
-  <div class="p-4 text-center">
-    <h3 class="text-lg font-semibold mb-2">{{ product.name }}</h3>
-    <p class="text-gray-700 text-sm">{{ product.price }} EGP</p>
+    <a
+      href="{% url 'product_details' product.id %}"
+      title="View Info"
+      class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+    >
+      <i class="fa-solid fa-circle-info text-base"></i>
+    </a>
   </div>
+
+  {% if not home_page %}
+    <!-- Product Info (hidden on homepage) -->
+    <div class="p-3 text-center">
+      <h3 class="font-medium mb-1 text-sm">{{ product.name }}</h3>
+      <p class="text-gray-700 text-xs">${{ product.price }}</p>
+    </div>
+  {% endif %}
 </div>
