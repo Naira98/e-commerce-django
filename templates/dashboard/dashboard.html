@@ -24,7 +24,7 @@
         <th class="px-4 py-2">ID</th>
         <th class="px-4 py-2">Image</th>
         <th class="px-4 py-2">Name</th>
-        <th class="px-4 py-2">Category</th>
+        <th class="px-4 py-2">Categoires</th>
         <th class="px-4 py-2">Price</th>
         <th class="px-4 py-2">Available Stock</th>
         <th class="px-4 py-2">Actions</th>
@@ -36,8 +36,16 @@
           <td class="px-4 py-2">{{ product.id }}</td>
           <td class="px-4 py-2"><img src="{{ product.image.url }}" class="h-16 mx-auto" /></td>
           <td class="px-4 py-2">{{ product.name }}</td>
-          <td class="px-4 py-2">{{ product.category.name }}</td>
-          <td class="px-4 py-2">{{ product.price }} EGP</td>
+          <td class="px-4 py-2">
+            {% for category in product.categories.all %}
+              <span class="inline-block bg-gray-200 text-gray-700 text-xs font-medium px-2 py-1 rounded mr-1">
+                {{ category.name }}
+              </span>
+            {% empty %}
+              <span class="text-gray-400 text-sm">No categories</span>
+            {% endfor %}
+          </td>
+          <td class="px-4 py-2">${{ product.price }}</td>
           <td class="px-4 py-2">{{ product.available_stock }}</td>
           <td class="px-4 py-2">
             <div class="flex items-center justify-center gap-2">

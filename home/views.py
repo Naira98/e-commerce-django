@@ -3,7 +3,7 @@ from products.models import Product
 
 
 def home(request):
-    new_products = Product.objects.order_by('-created_at')[:3]
+    new_products = Product.objects.order_by('-created_at')[:4]
 
     return render(request, "home/home.html", {"new_products": new_products})
 

@@ -22,8 +22,8 @@ class ProductForm(forms.ModelForm):
                     "rows": 4,
                 }
             ),
-            "categories": forms.Select(
-                attrs={"class": "w-full px-3 py-2 border rounded"}
+            "categories": forms.CheckboxSelectMultiple(
+                attrs={"class": "space-y-2"}
             ),
             "price": forms.NumberInput(
                 attrs={"class": "w-full px-3 py-2 border rounded"}
