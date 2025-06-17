@@ -4,22 +4,22 @@
 {% block body %} 
   {% load static %} 
 
-  {% include "components/navbar.html" with active='products' %} 
-  {% include "components/header.html" with title='Our Products' paragraph='Explore our latest collection' %}
+  {% include "components/navbar.html" with active="products" %} 
+  {% include "components/header.html" with title="Our Products" paragraph="Explore our latest collection" %}
 
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
 
       <!-- Sidebar: Categories -->
       <aside class="md:col-span-1">
-        {% include 'products/components/products_categories.html' with categories=categories per_page=per_page %}
+        {% include "products/components/products_categories.html" with categories=categories per_page=per_page %}
       </aside>
 
       <!-- Main Content -->
       <div class="md:col-span-3 flex flex-col gap-6">
 
         <!-- Products per page -->
-        {% include 'products/components/products_per_page.html' with per_page_options=per_page_options selected_category=selected_category %}
+        {% include "products/components/products_per_page.html" with per_page_options=per_page_options selected_category=selected_category %}
 
         <!-- Products Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -31,6 +31,9 @@
             </p>
           {% endfor %}
         </div>
+
+        <!-- Pagination -->
+        {% include "products/components/pagination.html" with page_number=page_number number_of_pages=number_of_pages selected_category=selected_category %}
 
       </div>
     </div>
