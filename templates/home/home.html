@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends "base.html" %} 
 {% load static %} 
 {% block title %} Home {% endblock title %} 
 
@@ -7,7 +7,7 @@
 {% endblock head %} 
 
 {% block body %} 
-{% include "components/navbar.html" with active='home' %}
+{% include "components/navbar.html" with active="home" %}
 
 <!-- Hero -->
 <section class="bg-gray-900 text-white py-16">
