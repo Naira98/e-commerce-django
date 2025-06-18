@@ -1,9 +1,12 @@
 <nav class="bg-gray-900 text-white py-4">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4">
-    <a href="/" class="text-xl font-bold">E-Commerce</a>
+    <!-- Logo -->
+    <div class="flex items-center">
+      <a href="/" class="text-xl font-bold">E-Commerce</a>
+    </div>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden md:flex space-x-6 items-center">
+    <!-- Navigation Links -->
+    <div class="hidden md:flex space-x-6 items-center flex-1 justify-center">
       <a href="/" class="hover:text-yellow-400 {% if active == 'home' %} text-yellow-400 font-semibold {% endif %}">Home</a>
       <a href="/products" class="hover:text-yellow-400 {% if active == 'products' %} text-yellow-400 font-semibold {% endif %}">Products</a>
       <a href="/about" class="hover:text-yellow-400 {% if active == 'about' %} text-yellow-400 font-semibold {% endif %}">About</a>
@@ -12,14 +15,22 @@
       {% if request.user.is_authenticated and request.user.is_staff %}
         <a href="/dashboard" class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
       {% endif %}
+    </div>
 
+    <!-- Login/Logout -->
+    <div class="hidden md:flex items-center space-x-4">
       {% if request.user.is_authenticated %}
         <form method="post" action="{% url 'logout' %}">
           {% csrf_token %}
-          <button type="submit" class="hover:text-yellow-400"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          <button type="submit" class="hover:text-yellow-400 flex items-center gap-1">
+            <i class="fa-solid fa-right-from-bracket transform rotate-180"></i> Logout
+          </button>
         </form>
       {% else %}
-        <a href="{% url 'login' %}" class="hover:text-yellow-400">Login</a>
+        <a href="{% url 'login' %}" class="hover:text-yellow-400 flex items-center gap-1">
+          <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+
       {% endif %}
     </div>
 
