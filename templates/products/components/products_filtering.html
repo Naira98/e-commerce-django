@@ -1,5 +1,9 @@
 <form method="get" class="flex flex-wrap justify-between items-center gap-y-4">
 
+  {% if selected_category %}
+    <input type="hidden" name="category" value="{{ selected_category }}">
+  {% endif %}
+
   <div class="flex items-center gap-2">
     <label for="search" class="font-medium text-sm">Search</label>
     <input
