@@ -1,0 +1,68 @@
+<form method="get" class="flex justify-end items-center gap-6 flex-wrap">
+  {% if selected_category %}
+    <input type="hidden" name="category" value="{{ selected_category }}">
+  {% endif %}
+
+  <!-- Products Per Page -->
+  <div class="flex items-center gap-2">
+    <span class="font-medium text-sm">Products per page</span>
+    <div class="flex gap-2">
+      {% for option in per_page_options %}
+        <label>
+          <input 
+            type="radio" 
+            name="per_page" 
+            value="{{ option }}"
+            class="hidden peer"
+            {% if per_page == option %}checked{% endif %}
+            onchange="this.form.submit()"
+          />
+          <div class="px-3 py-1 border rounded cursor-pointer text-sm font-medium 
+                      peer-checked:bg-yellow-400 peer-checked:text-white hover:bg-yellow-300 transition">
+            {{ option }}
+          </div>
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Sort by -->
+  <div class="flex items-center gap-2">
+    <span class="font-medium text-sm">Sort by</span>
+    <div class="flex gap-2">
+      <!-- Default sort -->
+      <label>
+        <input 
+          type="radio" 
+          name="sort_by" 
+          value="" 
+          class="hidden peer"
+          {% if not sort_by %}checked{% endif %}
+          onchange="this.form.submit()"
+        />
+        <div class="px-3 py-1 border rounded cursor-pointer text-sm font-medium 
+                    peer-checked:bg-yellow-400 peer-checked:text-white hover:bg-yellow-300 transition">
+          Default
+        </div>
+      </label>
+
+      <!-- Other sort options -->
+      {% for option in sort_by_options %}
+        <label>
+          <input 
+            type="radio" 
+            name="sort_by" 
+            value="{{ option }}"
+            class="hidden peer"
+            {% if sort_by == option %}checked{% endif %}
+            onchange="this.form.submit()"
+          />
+          <div class="px-3 py-1 border rounded cursor-pointer text-sm font-medium 
+                      peer-checked:bg-yellow-400 peer-checked:text-white hover:bg-yellow-300 transition">
+            {{ option|title }}
+          </div>
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+</form>
