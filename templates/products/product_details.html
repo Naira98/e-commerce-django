@@ -33,9 +33,11 @@
           <span class="text-2xl font-bold text-yellow-400">${{ product.price }}</span>
         </div>
 
-        <button class="bg-yellow-400 text-white px-6 py-3 rounded hover:bg-yellow-500 transition">
-          Add to Cart
-        </button>
+        {% if request.user.is_authenticated %}
+          <button class="bg-yellow-400 text-white px-6 py-3 rounded hover:bg-yellow-500 transition">
+            Add to Cart
+          </button>
+        {% endif %}
       </div>
     </div>
   </section>
