@@ -12,6 +12,10 @@ class AdminProductListView(ListView):
     model = Product
     template_name = 'dashboard/dashboard.html'
     context_object_name = 'products'
+    
+    def get_queryset(self):
+        return Product.objects.all().order_by('id') 
+
 
 @method_decorator(staff_member_required, name='dispatch')
 class AdminProductCreateView(CreateView):
