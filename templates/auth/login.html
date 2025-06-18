@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+{% include 'components/navbar.html' %}
+
+<div class="max-w-md mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Login</h2>
+
+  <form method="post" class="space-y-6">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline">Please check your username and password.</span>
+      </div>
+    {% endif %}
+
+    <div>
+      <label for="id_username" class="block text-gray-700 font-semibold mb-2">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="id_username"
+        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+        placeholder="Enter your username"
+        required
+        autofocus
+      />
+    </div>
+
+    <div>
+      <label for="id_password" class="block text-gray-700 font-semibold mb-2">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="id_password"
+        class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+        placeholder="Enter your password"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded transition duration-300"
+    >
+      Login
+    </button>
+  </form>
+</div>
+
+{% endblock %}
