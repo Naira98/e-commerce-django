@@ -24,19 +24,26 @@ def products(request):
         per_page = 6
 
     categories = Category.objects.all()
-    
+
+    # Filter by category
     filtered_products = (
         Product.objects.filter(categories__id=category_id)
         if category_id
         else Product.objects.all()
     )
 
+    # Search by name
+    search_query = request.GET.get("search", "").strip()
+    if search_query:
+        filtered_products = filtered_products.filter(name__icontains=search_query)
+
+    # Sort
     sort_by_options = ["name", "price"]
     sort_by = request.GET.get("sort_by") or None
     sort_by = sort_by if sort_by in sort_by_options else None
-
     filtered_sorted_products = filtered_products.order_by(sort_by) if sort_by else filtered_products
 
+    # Pagination
     total_products = filtered_sorted_products.count()
     number_of_pages = math.ceil(total_products / per_page) if per_page else 1
     start = per_page * (page_number - 1)
@@ -53,8 +60,10 @@ def products(request):
         "sort_by_options": sort_by_options,
         "number_of_pages": range(1, number_of_pages + 1),
         "page_number": page_number,
+        "search": search_query,
     }
     return render(request, "products/products.html", context)
+
 
 
 def product_details(request, product_id):
