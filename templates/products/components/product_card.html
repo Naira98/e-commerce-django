@@ -18,20 +18,25 @@
   <div
     class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
   >
-    <button
-      title="Add to Cart"
-      class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
-    >
-      <i class="fa-solid fa-cart-shopping text-base"></i>
-    </button>
+    {% if request.user.is_authenticated %}
+      <!-- Add to Cart -->
+      <button
+        title="Add to Cart"
+        class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+      >
+        <i class="fa-solid fa-cart-shopping text-base"></i>
+      </button>
 
-    <button
-      title="Add to Favorites"
-      class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
-    >
-      <i class="fa-regular fa-heart text-base"></i>
-    </button>
+      <!-- Add to Favorites -->
+      <button
+        title="Add to Favorites"
+        class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+      >
+        <i class="fa-regular fa-heart text-base"></i>
+      </button>
+    {% endif %}
 
+    <!-- View Info (always visible) -->
     <a
       href="{% url 'product_details' product.id %}"
       title="View Info"
@@ -40,6 +45,7 @@
       <i class="fa-solid fa-circle-info text-base"></i>
     </a>
   </div>
+
 
   {% if not home_page %}
     <!-- Product Info (hidden on homepage) -->
