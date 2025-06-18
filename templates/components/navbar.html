@@ -22,11 +22,13 @@
         class="hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 font-semibold {% endif %}"
         >Contact</a
       >
-      <a
-        href="/dashboard"
-        class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}"
-        >Dashboard</a
-      >
+      {% if request.user.is_authenticated and request.user.is_staff %}
+        <a
+          href="/dashboard"
+          class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}"
+        >Dashboard</a>
+      {% endif %}
+
     </div>
     <div class="md:hidden">
       <button id="menu-toggle" class="focus:outline-none">
