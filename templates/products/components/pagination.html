@@ -3,7 +3,7 @@
 
     {# Previous Button #}
     {% if page_number > 1 %}
-        <a href="?page={{ page_number|add:-1 }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if per_page %}&per_page={{ per_page }}{% endif %}"
+        <a href="?page={{ page_number|add:-1 }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if per_page %}&per_page={{ per_page }}{% endif %}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}"
         class="px-3 py-1 border rounded hover:bg-yellow-300 transition text-sm">
         &lt;
         </a>
@@ -11,7 +11,7 @@
 
     {# Page Numbers #}
     {% for num in number_of_pages %}
-        <a href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if per_page %}&per_page={{ per_page }}{% endif %}"
+        <a href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if per_page %}&per_page={{ per_page }}{% endif %}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}"
         class="px-3 py-1 border rounded text-sm font-medium
                 {% if num == page_number %}
                 bg-yellow-400 text-white border-yellow-400
@@ -24,7 +24,7 @@
 
     {# Next Button #}
     {% if page_number < number_of_pages|last %}
-        <a href="?page={{ page_number|add:1 }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if per_page %}&per_page={{ per_page }}{% endif %}"
+        <a href="?page={{ page_number|add:1 }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if per_page %}&per_page={{ per_page }}{% endif %}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}"
         class="px-3 py-1 border rounded hover:bg-yellow-300 transition text-sm">
         &gt;
         </a>

@@ -2,7 +2,7 @@
 <ul class="space-y-2">
   <li>
     <a
-      href="?{% if per_page %}per_page={{ per_page }}{% endif %}"
+      href="?{% if per_page %}per_page={{ per_page }}{% endif %}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}"
       class="hover:text-yellow-400 transition {% if not selected_category %} text-yellow-400 {% endif %}"
     >
       All
@@ -11,7 +11,7 @@
   {% for category in categories %}
   <li>
     <a
-      href="?category={{ category.id }}{% if per_page %}&per_page={{ per_page }}{% endif %}"
+      href="?category={{ category.id }}{% if per_page %}&per_page={{ per_page }}{% endif %}{% if sort_by %}&sort_by={{ sort_by }}{% endif %}"
       class="hover:text-yellow-400 transition {% if selected_category == category.id %} text-yellow-400 {% endif %}"
     >
       {{ category.name }}
