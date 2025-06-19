@@ -23,8 +23,11 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("django.contrib.auth.urls")),
     path("", include("home.urls")),
+    path("", include([
+        path("", include("django.contrib.auth.urls")),
+        path("", include("accounts.urls")),
+    ])),
     path("products/", include("products.urls")),
     path("dashboard/", include("dashboard.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
