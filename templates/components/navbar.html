@@ -14,7 +14,7 @@
       <a href="{% url 'contact' %}" class="hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 font-semibold {% endif %}">Contact</a>
 
       {% if request.user.is_authenticated and request.user.is_staff %}
-        <a href="{% url 'dashboard' %}" class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
+        <a href="{% url 'admin_dashboard' %}" class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
       {% endif %}
     </div>
 
@@ -64,7 +64,7 @@
     <a href="{% url 'contact' %}" class="block hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 font-semibold {% endif %}">Contact</a>
 
     {% if request.user.is_authenticated and request.user.is_staff %}
-      <a href="{% url 'dashboard' %}" class="block hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
+      <a href="{% url 'admin_dashboard' %}" class="block hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
     {% endif %}
 
     {% if request.user.is_authenticated %}
