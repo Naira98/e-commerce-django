@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+{% include 'components/navbar.html' %}
+{% load static %}
+
+<div class="max-w-2xl mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-900">Your Profile</h2>
+
+  <div class="flex items-center justify-center mb-8">
+    {% if request.user.profile_picture %}
+      <img src="{{ request.user.profile_picture.url }}" alt="Avatar" class="w-28 h-28 rounded-full object-cover border-4 border-yellow-500" />
+    {% else %}
+      <img src="{% static 'images/accounts/default_avatar.webp' %}" alt="Default Avatar" class="w-28 h-28 rounded-full object-cover border-4 border-yellow-500" />
+    {% endif %}
+  </div>
+
+  <div class="space-y-4 text-gray-800">
+    <div class="flex gap-6">
+      <span class="font-semibold">First Name:</span>
+      <span>{{ request.user.first_name }}</span>
+    </div>
+    <div class="flex gap-6">
+      <span class="font-semibold">Last Name:</span>
+      <span>{{ request.user.last_name }}</span>
+    </div>
+    <div class="flex gap-6">
+      <span class="font-semibold">Username:</span>
+      <span>{{ request.user.username }}</span>
+    </div>
+    <div class="flex gap-6">
+      <span class="font-semibold">Email:</span>
+      <span>{{ request.user.email }}</span>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <a href="{% url 'edit_profile' %}" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-6 rounded transition duration-300">
+      Edit Profile
+    </a>
+  </div>
+</div>
+{% endblock %}

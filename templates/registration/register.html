@@ -4,10 +4,10 @@
 {% block body %}
 {% include 'components/navbar.html' %}
 
-<div class="max-w-md mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
-  <h2 class="text-3xl font-bold mb-8 text-center text-gray-900">Create an Account</h2>
+<div class="max-w-xl mx-auto mt-12 p-6 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold mb-6 text-center text-gray-900">Create an Account</h2>
 
-  <form method="post" class="space-y-6" enctype="multipart/form-data">
+  <form method="post" class="space-y-4" enctype="multipart/form-data">
     {% csrf_token %}
 
     {% if form.errors %}
@@ -17,27 +17,53 @@
       </div>
     {% endif %}
 
-    {% for field in form %}
-      <div>
-        <label for="{{ field.id_for_label }}" class="block text-gray-700 font-semibold mb-2">
-          {{ field.label }}
+    <!-- First and Last Name in one row -->
+    <div class="flex gap-4">
+      <div class="w-1/2">
+        <label for="{{ form.first_name.id_for_label }}" class="block text-gray-700 font-semibold mb-1">
+          {{ form.first_name.label }}
         </label>
-        {{ field }}
-        {% if field.errors %}
-          <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+        {{ form.first_name }}
+        {% if form.first_name.errors %}
+          <p class="text-red-500 text-sm mt-1">{{ form.first_name.errors|striptags }}</p>
         {% endif %}
       </div>
+
+      <div class="w-1/2">
+        <label for="{{ form.last_name.id_for_label }}" class="block text-gray-700 font-semibold mb-1">
+          {{ form.last_name.label }}
+        </label>
+        {{ form.last_name }}
+        {% if form.last_name.errors %}
+          <p class="text-red-500 text-sm mt-1">{{ form.last_name.errors|striptags }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Other fields -->
+    {% for field in form %}
+      {% if field.name != "first_name" and field.name != "last_name" %}
+        <div>
+          <label for="{{ field.id_for_label }}" class="block text-gray-700 font-semibold mb-1">
+            {{ field.label }}
+          </label>
+          {{ field }}
+          {% if field.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
     {% endfor %}
 
     <button
       type="submit"
-      class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded transition duration-300"
+      class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2.5 rounded transition duration-300"
     >
       Register
     </button>
   </form>
 
-  <p class="text-center text-sm mt-6">
+  <p class="text-center text-sm mt-5">
     Already have an account?
     <a href="{% url 'login' %}" class="text-yellow-600 hover:underline font-medium">Login</a>
   </p>
