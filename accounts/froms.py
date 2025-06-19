@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django.contrib.auth.forms import UserCreationForm, SetPasswordMixin
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.hashers import make_password
 from .models import CustomUser
 
@@ -7,12 +7,11 @@ from .models import CustomUser
 class UserForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ("username", "email", "password1", "password2")
+        fields = ["username", "email", "password1", "password2", "profile_picture"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Tailwind-style classes for all fields
         for field_name, field in self.fields.items():
             field.widget.attrs.update(
                 {

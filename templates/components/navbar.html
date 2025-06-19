@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="bg-gray-900 text-white py-4">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4">
     <!-- Logo -->
@@ -20,6 +21,17 @@
     <!-- Login/Logout -->
     <div class="hidden md:flex items-center space-x-4">
       {% if request.user.is_authenticated %}
+        <!-- User Info -->
+        <div class="flex items-center space-x-2">
+          {% if request.user.profile_picture %}
+            <img src="{{ request.user.profile_picture.url }}" alt="avatar" class="w-8 h-8 rounded-full object-cover border-2 border-yellow-500" />
+          {% else %}
+            <img src="{% static 'images/accounts/default_avatar.webp' %}" alt="default" class="w-8 h-8 rounded-full object-cover border-2 border-yellow-500" />
+          {% endif %}
+          <span class="text-sm text-white">{{ request.user.username }}</span>
+        </div>
+
+        <!-- Logout Button -->
         <form method="post" action="{% url 'logout' %}">
           {% csrf_token %}
           <button type="submit" class="hover:text-yellow-400 flex items-center gap-1">
@@ -30,9 +42,9 @@
         <a href="{% url 'login' %}" class="hover:text-yellow-400 flex items-center gap-1">
           <i class="fa-solid fa-right-to-bracket"></i> Login
         </a>
-
       {% endif %}
     </div>
+
 
     <!-- Mobile Menu Toggle -->
     <div class="md:hidden">
