@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "accounts",
     "home",
     "products",
     "django.contrib.admin",
@@ -105,9 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = "/login"
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/login"
+
 
 
 # Internationalization
@@ -139,3 +138,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login"
