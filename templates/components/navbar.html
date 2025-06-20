@@ -27,15 +27,15 @@
         </a>
 
         <!-- Cart Icon -->
-        <a class="text-white hover:text-yellow-400 text-lg">
+        <a class="text-white hover:text-yellow-400 text-lg pointer-cursor">
           <i class="fa-solid fa-cart-shopping"></i>
         </a>
 
-        <!-- Username -->
-        <span class="text-sm text-white">{{ request.user.first_name }}</span>
+        <a href="{% url 'profile' %}" class="hover:opacity-90 flex items-center gap-2">
+          <!-- Username -->
+          <span class="text-sm text-white {% if active == 'profile' %} text-yellow-400 {% endif %}">{{ request.user.first_name }}</span>
 
         <!-- Avatar -->
-        <a href="{% url 'profile' %}" class="hover:opacity-90">
           {% if request.user.profile_picture %}
             <img src="{{ request.user.profile_picture.url }}" alt="avatar" class="w-8 h-8 rounded-full object-cover border-2 border-yellow-500" />
           {% else %}
@@ -90,19 +90,22 @@
       </a>
 
       <!-- Cart -->
-      <a href="#" class="block hover:text-yellow-400">
+      <a href="#" class="block hover:text-yellow-400 pointer-cursor">
         <i class="fa-solid fa-cart-shopping mr-1"></i> Cart
       </a>
 
       <!-- Profile -->
       <div class="flex items-center gap-2 mt-2">
-        {% if request.user.profile_picture %}
+        <a href="{% url 'profile' %}" class="hover:opacity-90 flex items-center gap-2">
+
+          {% if request.user.profile_picture %}
           <img src="{{ request.user.profile_picture.url }}" alt="avatar" class="w-8 h-8 rounded-full border-2 border-yellow-500 object-cover" />
-        {% else %}
+          {% else %}
           <img src="{% static 'images/accounts/default_avatar.webp' %}" alt="default" class="w-8 h-8 rounded-full border-2 border-yellow-500 object-cover" />
-        {% endif %}
-        <span class="text-sm">{{ request.user.first_name }}</span>
-      </div>
+          {% endif %}
+          <span class="text-sm {% if active == 'profile' %} text-yellow-400 {% endif %}">{{ request.user.first_name }}</span>
+        </a>
+        </div>
 
       <!-- Logout -->
       <form method="post" action="{% url 'logout' %}">

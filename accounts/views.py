@@ -23,7 +23,7 @@ class UpdateProfile(UpdateView):
     model = CustomUser
     template_name = "registration/edit_profile.html"
     form_class = UserEditForm
-    success_url = "/profile"
+    success_url = "/accounts/profile"
 
     def get_object(self, queryset=None):
         return self.request.user
