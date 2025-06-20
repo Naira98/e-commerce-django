@@ -10,7 +10,7 @@ class RegisterView(CreateView):
     model = CustomUser
     form_class = UserForm
     template_name = "registration/register.html"
-    success_url = "/login"
+    success_url = "/accounts/login"
 
 
 class UpdateProfile(UpdateView):
