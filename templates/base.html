@@ -21,9 +21,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   {% block declarebody %}
-    <body class="bg-white text-gray-800">
+    <body class="min-h-screen flex flex-col">
   {% endblock declarebody %} 
+    <div class="flex-1">
       {% block body %} {% endblock body %}
+    </div>
+      {% include 'components/footer.html' %}
       <script src="{% static 'js/mobile-navbar.js' %}"></script>
       <script src="{% static 'js/favorite-btn.js' %}"></script>
   </body>
