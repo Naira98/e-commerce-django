@@ -1,3 +1,5 @@
+{% load static %}
+
 <div
   class="group relative border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white 
   {% if home_page %} max-w-[280px] {% else %} max-w-[300px] {% endif %}"
@@ -30,10 +32,18 @@
       <!-- Add to Favorites -->
       <button
         title="Add to Favorites"
-        class="bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+        class="favorite-btn bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
+        data-product-id="{{ product.id }}"
+        aria-label="Toggle favorite"
       >
-        <i class="fa-regular fa-heart text-base"></i>
+        {% if product in request.user.favorites.all %}
+          <i class="fa-solid fa-heart text-base text-yellow-400"></i>
+        {% else %}
+          <i class="fa-regular fa-heart text-base"></i>
+        {% endif %}
       </button>
+
+
     {% endif %}
 
     <!-- View Info (always visible) -->

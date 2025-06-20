@@ -8,27 +8,39 @@
 
     <!-- Navigation Links -->
     <div class="hidden md:flex space-x-6 items-center flex-1 justify-center">
-      <a href="{% url 'index' %}" class="hover:text-yellow-400 {% if active == 'home' %} text-yellow-400 font-semibold {% endif %}">Home</a>
-      <a href="{% url 'products' %}" class="hover:text-yellow-400 {% if active == 'products' %} text-yellow-400 font-semibold {% endif %}">Products</a>
-      <a href="{% url 'about' %}" class="hover:text-yellow-400 {% if active == 'about' %} text-yellow-400 font-semibold {% endif %}">About</a>
-      <a href="{% url 'contact' %}" class="hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 font-semibold {% endif %}">Contact</a>
+      <a href="{% url 'index' %}" class="hover:text-yellow-400 {% if active == 'home' %} text-yellow-400 {% endif %}">Home</a>
+      <a href="{% url 'products' %}" class="hover:text-yellow-400 {% if active == 'products' %} text-yellow-400 {% endif %}">Products</a>
+      <a href="{% url 'about' %}" class="hover:text-yellow-400 {% if active == 'about' %} text-yellow-400 {% endif %}">About</a>
+      <a href="{% url 'contact' %}" class="hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 {% endif %}">Contact</a>
 
       {% if request.user.is_authenticated and request.user.is_staff %}
-        <a href="{% url 'admin_dashboard' %}" class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
+        <a href="{% url 'admin_dashboard' %}" class="hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 {% endif %}">Dashboard</a>
       {% endif %}
     </div>
 
     <!-- Login/Logout -->
     <div class="hidden md:flex items-center space-x-4">
       {% if request.user.is_authenticated %}
-        <!-- User Info -->
-        <a href="{% url 'profile' %}" class="flex items-center space-x-2 hover:opacity-90">
+        <!-- Favorites Icon -->
+        <a href="{% url 'favorites' %}" class="text-white hover:text-yellow-400 text-lg {% if active == 'favorites' %} text-yellow-400 {% endif %}">
+          <i class="fa-solid fa-heart"></i>
+        </a>
+
+        <!-- Cart Icon -->
+        <a class="text-white hover:text-yellow-400 text-lg">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+
+        <!-- Username -->
+        <span class="text-sm text-white">{{ request.user.first_name }}</span>
+
+        <!-- Avatar -->
+        <a href="{% url 'profile' %}" class="hover:opacity-90">
           {% if request.user.profile_picture %}
             <img src="{{ request.user.profile_picture.url }}" alt="avatar" class="w-8 h-8 rounded-full object-cover border-2 border-yellow-500" />
           {% else %}
             <img src="{% static 'images/accounts/default_avatar.webp' %}" alt="default" class="w-8 h-8 rounded-full object-cover border-2 border-yellow-500" />
           {% endif %}
-          <span class="text-sm text-white">{{ request.user.first_name }}</span>
         </a>
 
         <!-- Logout Button -->
@@ -38,12 +50,16 @@
             <i class="fa-solid fa-right-from-bracket transform rotate-180"></i> Logout
           </button>
         </form>
+
       {% else %}
+
+        <!-- Login Button -->
         <a href="{% url 'login' %}" class="hover:text-yellow-400 flex items-center gap-1">
           <i class="fa-solid fa-right-to-bracket"></i> Login
         </a>
       {% endif %}
     </div>
+
 
 
     <!-- Mobile Menu Toggle -->
@@ -58,22 +74,49 @@
 
   <!-- Mobile Navigation -->
   <div id="mobile-menu" class="hidden px-4 mt-2 space-y-2 md:hidden">
-    <a href="{% url 'index' %}" class="block hover:text-yellow-400 {% if active == 'home' %} text-yellow-400 font-semibold {% endif %}">Home</a>
-    <a href="{% url 'products' %}" class="block hover:text-yellow-400 {% if active == 'products' %} text-yellow-400 font-semibold {% endif %}">Products</a>
-    <a href="{% url 'about' %}" class="block hover:text-yellow-400 {% if active == 'about' %} text-yellow-400 font-semibold {% endif %}">About</a>
-    <a href="{% url 'contact' %}" class="block hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 font-semibold {% endif %}">Contact</a>
+    <a href="{% url 'index' %}" class="block hover:text-yellow-400 {% if active == 'home' %} text-yellow-400 {% endif %}">Home</a>
+    <a href="{% url 'products' %}" class="block hover:text-yellow-400 {% if active == 'products' %} text-yellow-400 {% endif %}">Products</a>
+    <a href="{% url 'about' %}" class="block hover:text-yellow-400 {% if active == 'about' %} text-yellow-400 {% endif %}">About</a>
+    <a href="{% url 'contact' %}" class="block hover:text-yellow-400 {% if active == 'contact' %} text-yellow-400 {% endif %}">Contact</a>
 
     {% if request.user.is_authenticated and request.user.is_staff %}
-      <a href="{% url 'admin_dashboard' %}" class="block hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 font-semibold {% endif %}">Dashboard</a>
+      <a href="{% url 'admin_dashboard' %}" class="block hover:text-yellow-400 {% if active == 'dashboard' %} text-yellow-400 {% endif %}">Dashboard</a>
     {% endif %}
 
     {% if request.user.is_authenticated %}
+      <!-- Favorites -->
+      <a href="{% url 'favorites' %}" class="block hover:text-yellow-400 {% if active == 'favorites' %} text-yellow-400 {% endif %}">
+        <i class="fa-solid fa-heart mr-1"></i> Favorites
+      </a>
+
+      <!-- Cart -->
+      <a href="#" class="block hover:text-yellow-400">
+        <i class="fa-solid fa-cart-shopping mr-1"></i> Cart
+      </a>
+
+      <!-- Profile -->
+      <div class="flex items-center gap-2 mt-2">
+        {% if request.user.profile_picture %}
+          <img src="{{ request.user.profile_picture.url }}" alt="avatar" class="w-8 h-8 rounded-full border-2 border-yellow-500 object-cover" />
+        {% else %}
+          <img src="{% static 'images/accounts/default_avatar.webp' %}" alt="default" class="w-8 h-8 rounded-full border-2 border-yellow-500 object-cover" />
+        {% endif %}
+        <span class="text-sm">{{ request.user.first_name }}</span>
+      </div>
+
+      <!-- Logout -->
       <form method="post" action="{% url 'logout' %}">
         {% csrf_token %}
-        <button type="submit" class="block text-left w-full hover:text-yellow-400">Logout</button>
+        <button type="submit" class="block text-left w-full hover:text-yellow-400 mt-2">
+          <i class="fa-solid fa-right-from-bracket transform rotate-180 mr-1"></i> Logout
+        </button>
       </form>
     {% else %}
-      <a href="{% url 'login' %}" class="block hover:text-yellow-400">Login</a>
+      <!-- Login -->
+      <a href="{% url 'login' %}" class="block hover:text-yellow-400 mt-2">
+        <i class="fa-solid fa-right-to-bracket mr-1"></i> Login
+      </a>
     {% endif %}
   </div>
+
 </nav>
