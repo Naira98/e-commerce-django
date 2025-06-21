@@ -1,6 +1,6 @@
 document.querySelectorAll(".favorite-btn").forEach((button) => {
   button.addEventListener("click", async () => {
-    const product_id = button.getAttribute("data-product-id");
+    const product_id = button.dataset.productid
     const icon = button.querySelector("i");
 
     const response = await fetch("/accounts/toggle-favorite", {

@@ -33,7 +33,7 @@
       <button
         title="Add to Favorites"
         class="favorite-btn bg-white text-black w-10 h-10 flex items-center justify-center rounded-full hover:text-yellow-400 hover:bg-gray-100 transition"
-        data-product-id="{{ product.id }}"
+        data-productid="{{ product.id }}"
         aria-label="Toggle favorite"
       >
         {% if product in request.user.favorites.all %}
